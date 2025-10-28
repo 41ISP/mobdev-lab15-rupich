@@ -4,7 +4,7 @@ import Button from "./Button"
 import Input from "./Input"
 
 const ItemField = () => {
-    const { getItem } = useItemStore()
+    const { getItems } = useItemStore()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -15,7 +15,7 @@ const ItemField = () => {
                 imageUrl: e.target.imageUrl.value,
             }
             await postItem(item)
-            getItem()
+            getItems()
         } catch (err) {
             console.error(err)
         }
@@ -30,7 +30,7 @@ const ItemField = () => {
                         <form onSubmit={handleSubmit} action="" className="create-message-form">
                             <Input placeholder="title" required name="title"></Input>
                             <Input placeholder="description" required name="description"></Input>
-                            <Input placeholder="price" required name="password" ></Input>
+                             <Input placeholder="price" required name="price"></Input>
                             <Input placeholder="imageUrl" required name="imageUrl"></Input>
                             <Button>Send</Button>
                         </form>
