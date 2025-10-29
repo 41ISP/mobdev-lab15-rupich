@@ -1,4 +1,4 @@
-import { useUserStore } from "../store/store"
+ import { useUserStore } from "../store/store"
 
 export const registerUser = async (user) => {
     try {
