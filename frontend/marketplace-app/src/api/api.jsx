@@ -1,4 +1,4 @@
- import { useUserStore } from "../store/store"
+import { useUserStore } from "../store/store"
 
 export const registerUser = async (user) => {
     try {
@@ -68,6 +68,54 @@ export const postItem = async (item) => {
             }
         )
         console.log(await req.json())
+    } catch (err) {
+        console.error(err)
+    }
+}
+export const deleteItem = async (id) => {
+    try {
+        const { jwt } = useUserStore.getState()
+        const req = await fetch(`https://kitek.ktkv.dev/marketplace/api/items/${id}`,
+            {
+                method: "DELETE",
+                body: JSON.stringify(id),
+                headers: {
+                    "Authorization": "Bearer " + jwt.token
+                },
+            }
+        )
+        console.log(await req.json())
+    } catch {
+        console.error(err)
+    }
+}
+export const fetchMyBids = async () => {
+    try {
+        const { jwt } = useUserStore.getState()
+        const req = await fetch(`https://kitek.ktkv.dev/marketplace/api/bids/my`, {
+            headers: {
+                "Authorization": "Bearer " + jwt.token
+            }
+        })
+        const res = await req.json()
+        return res
+    } catch (err) {
+        console.error(err)
+    }
+}
+export const createBid = async (itemId, amount) => {
+    try {
+        const { jwt } = useUserStore.getState()
+        const req = await fetch(`https://kitek.ktkv.dev/marketplace/api/items/${itemId}/bids`, {
+            method: "POST",
+            body: JSON.stringify({amount}),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + jwt.token
+            }
+        })
+        const res = await req.json()
+        return res
     } catch (err) {
         console.error(err)
     }
