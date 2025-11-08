@@ -1,0 +1,24 @@
+meta {
+  name: register
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://kitek.ktkv.dev/marketplace/api/auth/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "ira",
+    "password": "password123",
+    "email": "ira@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
